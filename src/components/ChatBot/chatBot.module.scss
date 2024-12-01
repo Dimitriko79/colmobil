@@ -1,0 +1,19 @@
+.chatBot{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  .chatBot__content{
+    display: contents;
+    .chatBot__conversation{
+      flex: 1;
+      max-width: 1280px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow-y: scroll;
+      background-color: #ffffff;
+    }
+  }
+}
