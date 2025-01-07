@@ -6,7 +6,7 @@ import Footer from "../Footer/index.js";
 import React, {useEffect} from "react";
 import BMW from '../../assets/bmw.png';
 import KIA from '../../assets/kia.png';
-import HYUNDAI from '../../assets/hYUNDAI.png';
+import HYUNDAI from '../../assets/hyundai.png';
 import LOGO from '../../assets/logo.svg';
 import CHECK from '../../assets/check.svg';
 
