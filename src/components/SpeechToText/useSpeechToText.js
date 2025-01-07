@@ -6,40 +6,32 @@ export const useSpeechToText = props => {
     const audioChunks = useRef([]);
     const recognitionRef = useRef(null);
 
-    const [speechToText, setSpeechToText] = useState('');
-
-
     const [isRecording, setIsRecording] = useState(false);
     const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-        if (SpeechRecognition) {
-            const recognitionInstance = new SpeechRecognition();
-            recognitionInstance.continuous = true;
-            recognitionInstance.interimResults = true;
-            recognitionInstance.lang = 'he-IL';
-
-            recognitionInstance.onresult = (event) => {
-                // setSpeechToText(Array.from(event.results).map(result => result[0].transcript).join(''));
-                setTextInput(Array.from(event.results).map(result => result[0].transcript).join(''))
-            };
-
-            recognitionInstance.onerror = (event) => {
-                console.error("Speech recognition error:", event.error);
-                setError(event.error)
-                setIsRecording(false);
-            };
-
-            recognitionRef.current = recognitionInstance;
-        } else {
-            setError('Speech Recognition is not supported in this browser.');
-        }
-    }, []);
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
     const startRecording = async () => {
         try {
+            if (SpeechRecognition) {
+                const recognitionInstance = new SpeechRecognition();
+                recognitionInstance.continuous = true;
+                recognitionInstance.interimResults = true;
+                recognitionInstance.lang = 'he-IL';
+
+                recognitionInstance.onresult = (event) => {
+                    setTextInput(Array.from(event.results).map(result => result[0].transcript).join(''))
+                };
+
+                recognitionInstance.onerror = (event) => {
+                    console.error("Speech recognition error:", event.error);
+                    setError(event.error)
+                    setIsRecording(false);
+                };
+
+                recognitionRef.current = recognitionInstance;
+            } else {
+                setError('Speech Recognition is not supported in this browser.');
+            }
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
             mediaRecorder.current = new MediaRecorder(stream);
@@ -75,7 +67,6 @@ export const useSpeechToText = props => {
         if (isRecording) {
             startRecording();
         } else {
-            // setTextInput(speechToText);
             stopRecording();
             recognitionRef.current && recognitionRef.current.abort();
         }
@@ -88,6 +79,7 @@ export const useSpeechToText = props => {
     return {
         handleVoiceInput,
         isRecording,
+        setIsRecording,
         error
     }
 }

@@ -11,7 +11,6 @@ const ChatContext = props => {
         isRecording,
         handleVoiceInput,
         handleKeyDown,
-        scrollToBottom,
         handleSendClick
     } = useChatContext(props);
 
@@ -32,6 +31,7 @@ const ChatContext = props => {
                     <SpeechToText isRecording={isRecording} handleVoiceInput={handleVoiceInput}/>
                     <button
                         className={classes.chatContext_send}
+                        disabled={isRecording}
                         type="button"
                         name="send"
                         aria-label="Send recognition"
