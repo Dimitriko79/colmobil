@@ -1,10 +1,10 @@
-import {useCallback, useEffect, useRef, useState} from "react";
+import {useCallback} from "react";
 import {useSpeechToText} from "../SpeechToText/useSpeechToText.js";
 import {updateChat} from "../../reducers/chatBotReducer.js";
 import {useDispatch} from "react-redux";
 
 export const useChatContext = props => {
-    const{ fetchData, textInput, setTextInput, audioUrl, setAudioUrl } = props
+    const{ fetchData, textInput, setTextInput } = props
     const dispatch = useDispatch();
     const {
         handleVoiceInput,

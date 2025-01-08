@@ -1,5 +1,5 @@
 import classes from "./speechToText.module.scss";
-import React from "react";
+import PropTypes from "prop-types";
 
 const SpeechToText = ({isRecording, handleVoiceInput}) => {
 
@@ -35,5 +35,10 @@ const SpeechToText = ({isRecording, handleVoiceInput}) => {
         </button>
     )
 }
+
+SpeechToText.propTypes = {
+    isRecording: PropTypes.bool.isRequired,
+    handleVoiceInput: PropTypes.func.isRequired,
+};
 
 export default SpeechToText;

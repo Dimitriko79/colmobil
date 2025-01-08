@@ -1,11 +1,9 @@
 import {useChatContext} from "./useChatContext.js";
 import classes from './chatContext.module.scss'
-import React from "react";
 import SpeechToText from "../SpeechToText/index.js";
 
 const ChatContext = props => {
     const {
-        error,
         textInput,
         setTextInput,
         isRecording,
