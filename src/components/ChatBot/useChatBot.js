@@ -51,6 +51,7 @@ export const useChatBot = () => {
                 requestBody,
                 {
                     headers: {
+                        'Access-Control-Allow-Origin': '*',
                         'Content-Type': 'application/json',
                         'Charset': 'UTF-8'
                     }
