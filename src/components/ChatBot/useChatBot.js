@@ -71,7 +71,7 @@ export const useChatBot = () => {
         } catch (err) {
             console.error('Error fetching data:', err);
             setError(err.message);
-            await dispatch(updateChat({
+            await dispatch(updateLastChatValue({
                 type: 'bot',
                 message: "Sorry, there was an error. Please try again.",
             }));
