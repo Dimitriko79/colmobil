@@ -47,7 +47,7 @@ export const useChatBot = () => {
                 user_id: user_id
             };
             const result = await axios.post(
-                'http://54.158.73.214:5001/main_chat',
+                'https://es46up9wxe.execute-api.us-east-1.amazonaws.com/test/main_chat',
                 requestBody,
                 {
                     headers: {
