@@ -47,11 +47,10 @@ export const useChatBot = () => {
                 user_id: user_id
             };
             const result = await axios.post(
-                'https://es46up9wxe.execute-api.us-east-1.amazonaws.com/main_chat',
+                'https://es46up9wxe.execute-api.us-east-1.amazonaws.com/test/main_chat',
                 requestBody,
                 {
                     headers: {
-                        'Access-Control-Allow-Origin': '*',
                         'Content-Type': 'application/json',
                         'Charset': 'UTF-8'
                     }
