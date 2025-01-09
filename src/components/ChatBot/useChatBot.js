@@ -79,7 +79,7 @@ export const useChatBot = () => {
             setError(err.message);
             await dispatch(updateLastChatValue({
                 type: 'bot',
-                message: "Sorry, there was an error. Please try again.",
+                message: "סליחה, הייתה שגיאה. אנא נסה שוב.",
             }));
         } finally {
             setLoading(false);
