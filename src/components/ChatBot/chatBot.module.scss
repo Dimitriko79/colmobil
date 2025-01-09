@@ -5,15 +5,14 @@
   align-items: center;
   min-height: 100vh;
   .chatBot__content{
-    flex: 1;
+    height: 80vh;
+    justify-content: space-between;
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
     .chatBot__conversation{
-      flex: 1;
       max-width: 1280px;
-      max-height: 532px;
       width: 100%;
       display: flex;
       flex-direction: column;

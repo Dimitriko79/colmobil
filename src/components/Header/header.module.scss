@@ -1,5 +1,9 @@
 .chatBot__header{
   width: 100%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .chatBot__title{
     font-family: "Assistant", sans-serif;
     font-weight: 700;
