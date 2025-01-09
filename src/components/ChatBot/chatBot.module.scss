@@ -8,6 +8,7 @@
   .chatBot__content{
     flex: 1;
     margin-top: 8vh;
+    margin-bottom: 24vh;
     justify-content: space-between;
     display: flex;
     flex-direction: column;
@@ -22,7 +23,6 @@
       background-color: #ffffff;
       scrollbar-width: none;
       margin-top: 20px;
-      margin-bottom: 24vh;
       &::-webkit-scrollbar{
         display: none;
       }

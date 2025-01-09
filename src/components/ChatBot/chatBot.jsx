@@ -12,8 +12,6 @@ const ChatBot = () => {
         fetchData,
         textInput,
         setTextInput,
-        audioUrl,
-        setAudioUrl,
         messagesEndRef,
         scrollToBottom
     } = useChatBot();
@@ -44,14 +42,11 @@ const ChatBot = () => {
                     </div>
                 </div>
             </div>
-            <ChatContext
+            <Footer
                 fetchData={fetchData}
                 textInput={textInput}
                 setTextInput={setTextInput}
-                audioUrl={audioUrl}
-                setAudioUrl={setAudioUrl}
             />
-            <Footer/>
         </div>
     )
 }

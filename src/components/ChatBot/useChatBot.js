@@ -10,7 +10,6 @@ const API_URL =
 
 export const useChatBot = () => {
     const [textInput, setTextInput] = useState('');
-    const [audioUrl, setAudioUrl] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const { chat } = useSelector(state => state.chat);
@@ -97,8 +96,6 @@ export const useChatBot = () => {
         fetchData,
         textInput,
         setTextInput,
-        audioUrl,
-        setAudioUrl,
         messagesEndRef,
         scrollToBottom
     }
