@@ -69,6 +69,9 @@
               height: 55px;
               width: 55px;
               padding: 20px 0;
+              img{
+                height: 100%;
+              }
             }
             .chatBot__context_item_message_user{
               height: 51px;
@@ -165,6 +168,11 @@
       .chatBot__conversation{
         .chatBot__context_item{
           .chatBot__context_item_message{
+            .chatBot__context_item_message_image{
+              height: 35px !important;
+              width: 35px !important;
+              padding: 20px 0;
+            }
             .chatBot__context_item_message_text{
               font-size: 16px;
               line-height: 20px;
