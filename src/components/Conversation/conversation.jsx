@@ -46,7 +46,6 @@ const Conversation = React.forwardRef(({ type, ind, message, cars = [], classes 
                                 backgroundSize: "contain",
                                 backgroundPosition: "center center",
                                 backgroundRepeat: "no-repeat",
-                                height: '346px'
                             }}
                         />
                         <div className={classes.chatBot_option_content}>

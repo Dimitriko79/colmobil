@@ -172,13 +172,14 @@
           }
           .chatBot_options{
             padding-right: 0;
-            gap: 50px;
+            gap: 30px;
             .chatBot_option{
               grid-template-columns: 1fr;
               gap: 36px;
               height: auto;
               .chatBot_option_image{
                 width: 100%;
+                height: 67vw !important;
               }
               .chatBot_option_content{
                 .chatBot_option_content_title{
