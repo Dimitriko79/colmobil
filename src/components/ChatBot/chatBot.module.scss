@@ -5,7 +5,7 @@
   align-items: center;
   min-height: 100vh;
   .chatBot__content{
-    height: 80vh;
+    height: 70vh;
     justify-content: space-between;
     display: flex;
     flex-direction: column;
@@ -20,6 +20,7 @@
       background-color: #ffffff;
       scrollbar-width: none;
       margin-top: 20px;
+      margin-bottom: 20px;
       &::-webkit-scrollbar{
         display: none;
       }

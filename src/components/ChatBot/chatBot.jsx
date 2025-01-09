@@ -43,14 +43,14 @@ const ChatBot = () => {
                         {conversationItems}
                     </div>
                 </div>
-                <ChatContext
-                    fetchData={fetchData}
-                    textInput={textInput}
-                    setTextInput={setTextInput}
-                    audioUrl={audioUrl}
-                    setAudioUrl={setAudioUrl}
-                />
             </div>
+            <ChatContext
+                fetchData={fetchData}
+                textInput={textInput}
+                setTextInput={setTextInput}
+                audioUrl={audioUrl}
+                setAudioUrl={setAudioUrl}
+            />
             <Footer/>
         </div>
     )
