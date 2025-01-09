@@ -20,9 +20,7 @@
       border: none;
       outline: none;
       font-family: "Assistant", sans-serif;
-      font-size: 20px;
       font-weight: 600;
-      line-height: 26px;
       text-align: right;
       text-underline-position: from-font;
       text-decoration-skip-ink: none;
@@ -48,3 +46,22 @@
   }
 }
 
+@media screen and (min-width: 768px){
+  .chatContext{
+    .chatContext__container{
+      .chatContext__input{
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+  .chatContext{
+    .chatContext__container{
+      .chatContext__input{
+        font-size: 16px;
+      }
+    }
+  }
+}

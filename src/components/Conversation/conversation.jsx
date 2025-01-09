@@ -22,7 +22,7 @@ const Conversation = React.forwardRef(({ type, ind, message, cars = [], classes 
             ) : (
                 <p
                     className={classes.chatBot__context_item_message_text}
-                    style={type === "bot" ? { padding: "20px" } : { padding: "0 20px", backgroundColor: "#183F40", color: "#ffffff"}}
+                    style={type === "bot" ? { padding: cars && !cars.length ? "20px" : "0 20px"} : { padding: "0 20px", backgroundColor: "#183F40", color: "#ffffff"}}
                     dangerouslySetInnerHTML={{
                         __html: cars && cars.length
                             ? message
