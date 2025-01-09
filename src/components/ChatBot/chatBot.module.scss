@@ -85,9 +85,7 @@
             }
             .chatBot__context_item_message_text{
               font-family: "Assistant", sans-serif;
-              font-size: 20px;
               font-weight: normal;
-              line-height: 28px;
               text-underline-position: from-font;
               text-decoration-skip-ink: none;
               color: #183F40;
@@ -103,12 +101,10 @@
           .chatBot_options {
             display: flex;
             flex-direction: column;
-            gap: 104px;
             .chatBot_option{
               display: grid;
               direction: rtl;
               text-decoration: none;
-              gap: 58px;
               .chatBot_option_image{
                 height: 100%;
               }
@@ -120,17 +116,13 @@
                 font-family: "Assistant", sans-serif;
                 color: #183F40;
                 .chatBot_option_content_title{
-                  font-size: 24px;
                   font-weight: 700;
-                  line-height: 28px;
                   text-underline-position: from-font;
                   text-decoration-skip-ink: none;
                   margin: 0;
                 }
                 .chatBot_option_content_subtitle{
-                  font-size: 20px;
                   font-weight: 600;
-                  line-height: 26px;
                   text-underline-position: from-font;
                   text-decoration-skip-ink: none;
                   word-wrap: break-word;
@@ -145,8 +137,6 @@
                   margin: 0;
                   li{
                     font-family: "Assistant", sans-serif;
-                    font-size: 18px;
-                    line-height: 24px;
                     text-underline-position: from-font;
                     text-decoration-skip-ink: none;
                     display: flex;
@@ -174,13 +164,37 @@
     .chatBot__content{
       .chatBot__conversation{
         .chatBot__context_item{
+          .chatBot__context_item_message{
+            .chatBot__context_item_message_text{
+              font-size: 16px;
+              line-height: 20px;
+            }
+          }
           .chatBot_options{
             padding-right: 0;
+            gap: 50px;
             .chatBot_option{
               grid-template-columns: 1fr;
+              gap: 36px;
               height: auto;
               .chatBot_option_image{
                 width: 100%;
+              }
+              .chatBot_option_content{
+                .chatBot_option_content_title{
+                  font-size: 22px;
+                  line-height: 24px;
+                }
+                .chatBot_option_content_subtitle{
+                  font-size: 18px;
+                  line-height: 22px;
+                }
+                .chatBot_option_content_descriptions{
+                  li{
+                    font-size: 16px;
+                    line-height: 20px;
+                  }
+                }
               }
             }
           }
@@ -194,13 +208,37 @@
     .chatBot__content{
       .chatBot__conversation{
         .chatBot__context_item{
+          .chatBot__context_item_message{
+            .chatBot__context_item_message_text{
+              font-size: 20px;
+              line-height: 28px;
+            }
+          }
           .chatBot_options{
             padding-right: 55px;
+            gap: 104px;
             .chatBot_option{
               grid-template-columns: 44% 1fr;
+              gap: 58px;
               height: 346px;
               .chatBot_option_image{
                 width: 100%;
+              }
+              .chatBot_option_content{
+                .chatBot_option_content_title{
+                  font-size: 24px;
+                  line-height: 28px;
+                }
+                .chatBot_option_content_subtitle{
+                  font-size: 20px;
+                  line-height: 26px;
+                }
+                .chatBot_option_content_descriptions{
+                  li{
+                    font-size: 18px;
+                    line-height: 24px;
+                  }
+                }
               }
             }
           }
