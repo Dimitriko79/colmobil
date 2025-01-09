@@ -6,7 +6,9 @@
   width: 100%;
   height: 12vh;
   flex-shrink: 0;
-  background: #183F40;
+  background-color: #183F40;
+  position: fixed;
+  bottom: 0;
   .chatBot__container{
     width: 100%;
     height: 100%;

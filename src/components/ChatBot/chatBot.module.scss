@@ -4,8 +4,10 @@
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  position: relative;
   .chatBot__content{
-    height: 70vh;
+    flex: 1;
+    margin-top: 8vh;
     justify-content: space-between;
     display: flex;
     flex-direction: column;
@@ -20,7 +22,7 @@
       background-color: #ffffff;
       scrollbar-width: none;
       margin-top: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 24vh;
       &::-webkit-scrollbar{
         display: none;
       }
@@ -166,6 +168,7 @@
 @media screen and (max-width: 768px) {
   .chatBot{
     .chatBot__content{
+      //height: 60vh;
       .chatBot__conversation{
         .chatBot__context_item{
           .chatBot__context_item_message{

@@ -5,6 +5,9 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  background-color: #ffffff;
+  top: 0;
   .chatBot__title{
     font-family: "Assistant", sans-serif;
     font-weight: 700;
