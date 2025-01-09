@@ -5,6 +5,7 @@ export const useSpeechToText = props => {
     const mediaRecorder = useRef(null);
     const audioChunks = useRef([]);
     const recognitionRef = useRef(null);
+    const inputRef = useRef(null);
 
     const [isRecording, setIsRecording] = useState(false);
     const [error, setError] = useState(null);
@@ -19,7 +20,8 @@ export const useSpeechToText = props => {
                 recognitionInstance.lang = 'he-IL';
 
                 recognitionInstance.onresult = (event) => {
-                    setTextInput(Array.from(event.results).map(result => result[0].transcript).join(''))
+                    const text = Array.from(event.results).map(result => result[0].transcript).join('');
+                    setTextInput(text);
                 };
 
                 recognitionInstance.onerror = (event) => {
@@ -76,7 +78,14 @@ export const useSpeechToText = props => {
         setIsRecording(!isRecording);
     };
 
+    const handleInput = e => {
+        const input = inputRef.current;
+        const length = e.target.value.length;
+        input.setSelectionRange(length, length);
+    }
+
     return {
+        handleInput,
         handleVoiceInput,
         isRecording,
         setIsRecording,

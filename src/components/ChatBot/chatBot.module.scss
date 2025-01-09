@@ -20,6 +20,7 @@
       overflow-y: scroll;
       background-color: #ffffff;
       scrollbar-width: none;
+      margin-top: 20px;
       &::-webkit-scrollbar{
         display: none;
       }
@@ -99,6 +100,7 @@
               display: flex;
               align-items: center;
               padding: 0 20px;
+              margin: 0;
             }
           }
           .chatBot_options {
@@ -175,7 +177,6 @@
             }
             .chatBot__context_item_message_text{
               font-size: 16px;
-              line-height: 20px;
             }
           }
           .chatBot_options{
@@ -220,7 +221,6 @@
           .chatBot__context_item_message{
             .chatBot__context_item_message_text{
               font-size: 20px;
-              line-height: 28px;
             }
           }
           .chatBot_options{

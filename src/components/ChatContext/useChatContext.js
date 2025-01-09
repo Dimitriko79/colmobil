@@ -7,6 +7,8 @@ export const useChatContext = props => {
     const{ fetchData, textInput, setTextInput } = props
     const dispatch = useDispatch();
     const {
+        inputRef,
+        handleInput,
         handleVoiceInput,
         isRecording,
         setIsRecording,
@@ -38,11 +40,13 @@ export const useChatContext = props => {
 
     return {
         error,
+        inputRef,
         textInput,
         setTextInput,
         isRecording,
         handleVoiceInput,
         handleKeyDown,
-        handleSendClick
+        handleSendClick,
+        handleInput
     };
 };

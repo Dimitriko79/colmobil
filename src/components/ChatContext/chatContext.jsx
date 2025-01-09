@@ -1,21 +1,26 @@
 import {useChatContext} from "./useChatContext.js";
 import classes from './chatContext.module.scss'
 import SpeechToText from "../SpeechToText/index.js";
+import {useRef} from "react";
 
 const ChatContext = props => {
     const {
+        inputRef,
         textInput,
         setTextInput,
         isRecording,
         handleVoiceInput,
         handleKeyDown,
-        handleSendClick
+        handleSendClick,
+        handleInput
     } = useChatContext(props);
 
     return (
         <div className={classes.chatContext}>
             <div className={classes.chatContext__container}>
                 <input
+                    ref={inputRef}
+                    id="inputField"
                     className={classes.chatContext__input}
                     type="text"
                     name="message"
@@ -24,6 +29,7 @@ const ChatContext = props => {
                     onChange={(e) => setTextInput(e.target.value)}
                     value={textInput}
                     aria-label="Input recognition"
+                    onInput={handleInput}
                 />
                 <div className={classes.chatContext__actions}>
                     <SpeechToText isRecording={isRecording} handleVoiceInput={handleVoiceInput}/>
