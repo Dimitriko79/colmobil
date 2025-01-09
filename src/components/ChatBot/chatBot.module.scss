@@ -104,13 +104,11 @@
             display: flex;
             flex-direction: column;
             gap: 104px;
-            padding-right: 55px;
             .chatBot_option{
               display: grid;
-              grid-template-columns: 44% 1fr;
               direction: rtl;
+              text-decoration: none;
               gap: 58px;
-              height: 346px;
               .chatBot_option_image{
                 height: 100%;
               }
@@ -165,6 +163,47 @@
         }
         .chatBot__context_item .chatBot_option:nth-child(even){
           direction: ltr;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .chatBot{
+    .chatBot__content{
+      .chatBot__conversation{
+        .chatBot__context_item{
+          .chatBot_options{
+            padding-right: 0;
+            .chatBot_option{
+              grid-template-columns: 1fr;
+              height: auto;
+              .chatBot_option_image{
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+  .chatBot{
+    .chatBot__content{
+      .chatBot__conversation{
+        .chatBot__context_item{
+          .chatBot_options{
+            padding-right: 55px;
+            .chatBot_option{
+              grid-template-columns: 44% 1fr;
+              height: 346px;
+              .chatBot_option_image{
+                width: 100%;
+              }
+            }
+          }
         }
       }
     }

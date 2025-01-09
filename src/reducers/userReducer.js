@@ -1,20 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from "uuid";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
-let sessionId = Cookies.get("sessionId");
+// let sessionId = Cookies.get("sessionId");
 
-if (!sessionId) {
-    sessionId = uuidv4();
-    Cookies.set("sessionId", sessionId, {
-        expires: 1 / 24
-    });
-}
+// if (!sessionId) {
+//     sessionId = uuidv4();
+//     Cookies.set("sessionId", sessionId, {
+//         expires: 1 / 24
+//     });
+// }
 
 const initialState = {
     user: {
         username: "Current User",
-        user_id: sessionId
+        user_id: uuidv4()
     }
 };
 

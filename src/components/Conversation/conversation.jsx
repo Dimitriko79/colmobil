@@ -37,8 +37,8 @@ const Conversation = React.forwardRef(({ type, ind, message, cars = [], classes 
         <div key={ind} className={classes.chatBot__context_item} style={{ direction: "rtl" }}>
             {messageItem}
             <div className={classes.chatBot_options}>
-                {cars.map(({ image_url, title, description, options }, index) => (
-                    <div key={index} className={classes.chatBot_option}>
+                {cars.map(({ image_url, title, description, options, url }, index) => (
+                    <a href={url} key={index} className={classes.chatBot_option} target="_blank">
                         <div
                             className={classes.chatBot_option_image}
                             style={{
@@ -46,6 +46,7 @@ const Conversation = React.forwardRef(({ type, ind, message, cars = [], classes 
                                 backgroundSize: "contain",
                                 backgroundPosition: "center center",
                                 backgroundRepeat: "no-repeat",
+                                height: '346px'
                             }}
                         />
                         <div className={classes.chatBot_option_content}>
@@ -62,7 +63,7 @@ const Conversation = React.forwardRef(({ type, ind, message, cars = [], classes 
                                 ))}
                             </ul>
                         </div>
-                    </div>
+                    </a>
                 ))}
             </div>
             <div ref={ref} />

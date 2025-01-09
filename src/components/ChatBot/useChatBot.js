@@ -3,6 +3,11 @@ import {setFirstChatOpen, updateChat, updateLastChatValue} from "../../reducers/
 import {useDispatch, useSelector} from "react-redux";
 import axios from 'axios';
 
+const API_URL =
+    import.meta.env.MODE === 'production'
+        ? import.meta.env.VITE_API_URL_PROD
+        : import.meta.env.VITE_API_URL_DEV;
+
 export const useChatBot = () => {
     const [textInput, setTextInput] = useState('');
     const [audioUrl, setAudioUrl] = useState(null);
@@ -23,10 +28,11 @@ export const useChatBot = () => {
             }, {})
         ).map(car => ({
             image_url: car.Image_URL,
-            description: car.reason,
             title: `${car['יצרן'] || ''} ${car['דגם'] || ''}`.trim(),
+            description: car.reason,
+            url: car.car_web_link,
             options: Object.entries(car)
-                .filter(([key]) => !["Image_URL", "reason"].includes(key))
+                .filter(([key]) => !["Image_URL", "reason", "car_web_link"].includes(key))
                 .map(([key, value]) => ({ key, value }))
         }));
     }
@@ -47,7 +53,7 @@ export const useChatBot = () => {
                 user_id: user_id
             };
             const result = await axios.post(
-                'https://es46up9wxe.execute-api.us-east-1.amazonaws.com/test',
+                `${API_URL}`,
                 requestBody,
                 {
                     headers: {
