@@ -85,6 +85,7 @@ export const useSpeechToText = props => {
     }
 
     return {
+        inputRef,
         handleInput,
         handleVoiceInput,
         isRecording,
