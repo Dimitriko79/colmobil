@@ -4,18 +4,25 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 10vh;
+  height: 12vh;
+  flex-shrink: 0;
   background: #183F40;
-  .chatBot__text{
-    font-family: "Assistant", sans-serif;
-    font-weight: 700;
-    line-height: 28px;
-    text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-    color: #ffffff;
-    margin: 10px 0;
-    padding: 0 10px;
+  .chatBot__container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .chatBot__text{
+      font-family: "Assistant", sans-serif;
+      font-weight: 700;
+      text-align: center;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+      color: #ffffff;
+      margin: 10px 0;
+      padding: 0 10px;
+    }
   }
 }
 
@@ -23,6 +30,7 @@
   .chatBot__footer{
     .chatBot__text{
       font-size: 20px;
+      line-height: 20px;
     }
   }
 }
@@ -31,6 +39,7 @@
   .chatBot__footer{
     .chatBot__text{
       font-size: 24px;
+      line-height: 28px;
     }
   }
 }
