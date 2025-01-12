@@ -28,7 +28,6 @@
       }
       .chatBot__chatBot__conversation_items{
         margin: 0 10px;
-        min-height: 50px;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -111,6 +110,12 @@
               display: grid;
               direction: rtl;
               text-decoration: none;
+              &:first-child{
+                margin-top: 50px;
+              }
+              &:last-child{
+                margin-bottom: 50px;
+              }
               .chatBot_option_image{
                 height: 100%;
               }
@@ -226,7 +231,7 @@
           }
           .chatBot_options{
             padding-right: 55px;
-            gap: 104px;
+            gap: 50px;
             .chatBot_option{
               grid-template-columns: 44% 1fr;
               gap: 58px;
