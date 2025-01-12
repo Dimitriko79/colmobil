@@ -44,7 +44,7 @@ const Conversation = React.forwardRef(({ type, ind, message, cars = [], classes 
                             style={{
                                 backgroundImage: `url(${image_url})`,
                                 backgroundSize: "contain",
-                                backgroundPosition: "center center",
+                                backgroundPosition: "top center",
                                 backgroundRepeat: "no-repeat",
                             }}
                         />
