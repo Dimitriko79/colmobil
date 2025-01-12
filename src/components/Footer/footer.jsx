@@ -1,18 +1,16 @@
 import classes from './footer.module.scss';
 import ChatContext from "../ChatContext/index.js";
-import React from "react";
 import PropTypes from "prop-types";
 
 const Footer = ({fetchData, textInput, setTextInput}) => {
 
     return (
-        <React.Fragment>
-            <ChatContext
-                fetchData={fetchData}
-                textInput={textInput}
-                setTextInput={setTextInput}
-            />
             <footer className={classes.chatBot__footer}>
+                <ChatContext
+                    fetchData={fetchData}
+                    textInput={textInput}
+                    setTextInput={setTextInput}
+                />
                 <div className={classes.chatBot__container}>
                     <p className={classes.chatBot__text}>
                         אם יש לך בקשות נוספות או סינונים נוספים,<br/>
@@ -20,7 +18,6 @@ const Footer = ({fetchData, textInput, setTextInput}) => {
                     </p>
                 </div>
             </footer>
-        </React.Fragment>
     )
 }
 
