@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from "react";
 
 export const useSpeechToText = (props) => {
     const { setTextInput } = props;
-    const mediaRecorder = useRef(null);
-    const audioChunks = useRef([]);
     const recognitionRef = useRef(null);
     const inputRef = useRef(null);
 
@@ -37,39 +35,10 @@ export const useSpeechToText = (props) => {
             recognitionInstance.onerror = (event) => {
                 console.error("Speech recognition error:", event.error);
                 setError(`Speech recognition error: ${event.error}`);
-                setIsRecording(false);
+                // setIsRecording(false);
             };
 
             recognitionRef.current = recognitionInstance;
-
-            // Request access to the microphone
-            const stream = await navigator.mediaDevices.getUserMedia({
-                audio: {
-                    echoCancellation: true,
-                    noiseSuppression: true,
-                },
-            });
-
-            // Setting up MediaRecorder
-            mediaRecorder.current = new MediaRecorder(stream);
-            audioChunks.current = [];
-
-            mediaRecorder.current.ondataavailable = (event) => {
-                if (event.data.size > 0) {
-                    audioChunks.current.push(event.data);
-                }
-            };
-
-            mediaRecorder.current.onstop = () => {
-                const audioBlob = new Blob(audioChunks.current, {
-                    type: "audio/ogg; codecs=opus",
-                });
-                const url = URL.createObjectURL(audioBlob);
-                console.log(url)
-            };
-
-            // Launching MediaRecorder and SpeechRecognition
-            mediaRecorder.current.start();
             recognitionRef.current.start();
             setIsRecording(true);
         } catch (err) {
@@ -79,12 +48,6 @@ export const useSpeechToText = (props) => {
     };
 
     const stopRecording = () => {
-        // Stopping MediaRecorder
-        if (mediaRecorder.current) {
-            mediaRecorder.current.stop();
-            // Stop all microphone tracks
-            mediaRecorder.current.stream.getTracks().forEach((track) => track.stop());
-        }
         // Stop SpeechRecognition
         if (recognitionRef.current) {
             recognitionRef.current.stop();
@@ -109,9 +72,6 @@ export const useSpeechToText = (props) => {
     useEffect(() => {
         // Cleaning up resources when unmounting
         return () => {
-            if (mediaRecorder.current) {
-                mediaRecorder.current.stream.getTracks().forEach((track) => track.stop());
-            }
             if (recognitionRef.current) {
                 recognitionRef.current.stop();
             }
