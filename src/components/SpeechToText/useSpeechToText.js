@@ -1,7 +1,7 @@
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 
-export const useSpeechToText = props => {
-    const { setTextInput, setAudioUrl } = props;
+export const useSpeechToText = (props) => {
+    const { setTextInput } = props;
     const mediaRecorder = useRef(null);
     const audioChunks = useRef([]);
     const recognitionRef = useRef(null);
@@ -9,73 +9,95 @@ export const useSpeechToText = props => {
 
     const [isRecording, setIsRecording] = useState(false);
     const [error, setError] = useState(null);
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
 
     const startRecording = async () => {
         try {
-            if (SpeechRecognition) {
-                const recognitionInstance = new SpeechRecognition();
-                recognitionInstance.continuous = true;
-                recognitionInstance.interimResults = true;
-                recognitionInstance.lang = 'he-IL';
-
-                recognitionInstance.onresult = (event) => {
-                    const text = Array.from(event.results).map(result => result[0].transcript).join('');
-                    setTextInput(text);
-                };
-
-                recognitionInstance.onerror = (event) => {
-                    console.error("Speech recognition error:", event.error);
-                    setError(event.error)
-                    setIsRecording(false);
-                };
-
-                recognitionRef.current = recognitionInstance;
-            } else {
-                setError('Speech Recognition is not supported in this browser.');
+            // Checking SpeechRecognition support
+            if (!SpeechRecognition) {
+                setError("Speech Recognition is not supported in this browser.");
+                console.error("Speech Recognition is not supported in this browser.");
+                return;
             }
-            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
+            // Initializing SpeechRecognition
+            const recognitionInstance = new SpeechRecognition();
+            recognitionInstance.continuous = true;
+            recognitionInstance.interimResults = true;
+            recognitionInstance.lang = "he-IL";
+
+            recognitionInstance.onresult = (event) => {
+                const text = Array.from(event.results)
+                    .map((result) => result[0].transcript)
+                    .join("");
+                setTextInput(text);
+            };
+
+            recognitionInstance.onerror = (event) => {
+                console.error("Speech recognition error:", event.error);
+                setError(`Speech recognition error: ${event.error}`);
+                setIsRecording(false);
+            };
+
+            recognitionRef.current = recognitionInstance;
+
+            // Request access to the microphone
+            const stream = await navigator.mediaDevices.getUserMedia({
+                audio: {
+                    echoCancellation: true,
+                    noiseSuppression: true,
+                },
+            });
+
+            // Setting up MediaRecorder
             mediaRecorder.current = new MediaRecorder(stream);
             audioChunks.current = [];
 
             mediaRecorder.current.ondataavailable = (event) => {
-                audioChunks.current.push(event.data);
+                if (event.data.size > 0) {
+                    audioChunks.current.push(event.data);
+                }
             };
 
             mediaRecorder.current.onstop = () => {
-                const audioBlob = new Blob(audioChunks.current, { type: 'audio/wav' });
+                const audioBlob = new Blob(audioChunks.current, {
+                    type: "audio/ogg; codecs=opus",
+                });
                 const url = URL.createObjectURL(audioBlob);
-                setAudioUrl(url);
+                console.log(url)
             };
 
+            // Launching MediaRecorder and SpeechRecognition
             mediaRecorder.current.start();
-            recognitionRef.current && recognitionRef.current.start();
+            recognitionRef.current.start();
             setIsRecording(true);
-        } catch (error) {
-            console.error("Microphone access error:", error);
+        } catch (err) {
+            console.error("Microphone access error:", err);
+            setError(err.message || "Error accessing microphone.");
         }
     };
 
     const stopRecording = () => {
+        // Stopping MediaRecorder
         if (mediaRecorder.current) {
             mediaRecorder.current.stop();
+            // Stop all microphone tracks
+            mediaRecorder.current.stream.getTracks().forEach((track) => track.stop());
         }
-        recognitionRef.current && recognitionRef.current.stop();
+        // Stop SpeechRecognition
+        if (recognitionRef.current) {
+            recognitionRef.current.stop();
+        }
         setIsRecording(false);
     };
 
-    useEffect(() => {
+    const toggleRecording = () => {
         if (isRecording) {
-            startRecording();
-        } else {
             stopRecording();
-            recognitionRef.current && recognitionRef.current.abort();
+        } else {
+            startRecording();
         }
-    }, [isRecording]);
-
-    const handleVoiceInput = () => {
-        setIsRecording(!isRecording);
     };
 
     const handleInput = e => {
@@ -84,12 +106,24 @@ export const useSpeechToText = props => {
         input.setSelectionRange(length, length);
     }
 
+    useEffect(() => {
+        // Cleaning up resources when unmounting
+        return () => {
+            if (mediaRecorder.current) {
+                mediaRecorder.current.stream.getTracks().forEach((track) => track.stop());
+            }
+            if (recognitionRef.current) {
+                recognitionRef.current.stop();
+            }
+        };
+    }, []);
+
     return {
         inputRef,
-        handleInput,
-        handleVoiceInput,
         isRecording,
         setIsRecording,
-        error
-    }
-}
+        error,
+        handleInput,
+        toggleRecording,
+    };
+};

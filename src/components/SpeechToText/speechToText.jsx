@@ -1,13 +1,13 @@
 import classes from "./speechToText.module.scss";
 import PropTypes from "prop-types";
 
-const SpeechToText = ({isRecording, handleVoiceInput}) => {
+const SpeechToText = ({isRecording, toggleRecording}) => {
 
     return (
         <button
             type="button"
             className={classes.chatContext_microphone}
-            onClick={handleVoiceInput}
+            onClick={toggleRecording}
             aria-label="Speech recognition"
         >
             <svg
@@ -38,7 +38,7 @@ const SpeechToText = ({isRecording, handleVoiceInput}) => {
 
 SpeechToText.propTypes = {
     isRecording: PropTypes.bool.isRequired,
-    handleVoiceInput: PropTypes.func.isRequired,
+    toggleRecording: PropTypes.func.isRequired,
 };
 
 export default SpeechToText;

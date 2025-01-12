@@ -9,7 +9,7 @@ const ChatContext = props => {
         textInput,
         setTextInput,
         isRecording,
-        handleVoiceInput,
+        toggleRecording,
         handleKeyDown,
         handleSendClick,
         handleInput
@@ -32,7 +32,7 @@ const ChatContext = props => {
                     onInput={handleInput}
                 />
                 <div className={classes.chatContext__actions}>
-                    <SpeechToText isRecording={isRecording} handleVoiceInput={handleVoiceInput}/>
+                    <SpeechToText isRecording={isRecording} toggleRecording={toggleRecording}/>
                     <button
                         className={classes.chatContext_send}
                         disabled={isRecording}

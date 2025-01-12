@@ -8,11 +8,11 @@ export const useChatContext = props => {
     const dispatch = useDispatch();
     const {
         inputRef,
-        handleInput,
-        handleVoiceInput,
         isRecording,
         setIsRecording,
-        error
+        error,
+        handleInput,
+        toggleRecording,
     } = useSpeechToText(props);
 
     const handleSendClick = useCallback(async () => {
@@ -44,7 +44,7 @@ export const useChatContext = props => {
         textInput,
         setTextInput,
         isRecording,
-        handleVoiceInput,
+        toggleRecording,
         handleKeyDown,
         handleSendClick,
         handleInput
