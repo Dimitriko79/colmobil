@@ -26,16 +26,26 @@ export const useSpeechToText = (props) => {
             recognitionInstance.lang = "he-IL";
 
             recognitionInstance.onresult = (event) => {
-                const text = Array.from(event.results)
-                    .map((result) => result[0].transcript)
-                    .join("");
-                setTextInput(text);
+                let interimTranscript = "";
+                let finalTranscript = "";
+
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    const result = event.results[i];
+
+                    if (result.isFinal) {
+                        finalTranscript += result[0].transcript;
+                    } else {
+                        interimTranscript += result[0].transcript;
+                    }
+                }
+
+                setTextInput(finalTranscript + interimTranscript);
             };
 
             recognitionInstance.onerror = (event) => {
                 console.error("Speech recognition error:", event.error);
                 setError(`Speech recognition error: ${event.error}`);
-                // setIsRecording(false);
+                setIsRecording(false);
             };
 
             recognitionRef.current = recognitionInstance;
